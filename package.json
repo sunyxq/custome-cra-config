@@ -16,11 +16,11 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "dotenv -e .env react-app-rewired start",
-    "build:dev": "dotenv -e .env.dev react-app-rewired build",
-    "start:prd": "dotenv -e .env.prd.local react-app-rewired start",
-    "build": "dotenv -e .env.prd react-app-rewired build",
-    "analyze": "dotenv -e .env.analyze react-app-rewired build"
+    "start": "dotenv -e env/.env react-app-rewired start",
+    "build:dev": "dotenv -e env/.env.dev react-app-rewired build",
+    "start:prd": "dotenv -e env/.env.prd.local react-app-rewired start",
+    "build": "dotenv -e env/.env.prd react-app-rewired build",
+    "analyze": "dotenv -e env/.env.analyze react-app-rewired build"
   },
   "eslintConfig": {
     "extends": "react-app"

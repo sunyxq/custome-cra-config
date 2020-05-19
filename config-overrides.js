@@ -13,12 +13,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const smp = new SpeedMeasurePlugin()
 
-const setAnalyze = () => config => {
-  console.log(process.env);
-  
-  if(process.env.REACT_APP_ANALYZE) {
-    console.log(config.plugins.length);
-    
+const setAnalyze = () => config => {  
+  if(process.env.REACT_APP_ANALYZE) {    
     config.plugins.push(new BundleAnalyzerPlugin())
   }
   return config
