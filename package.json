@@ -1,0 +1,50 @@
+{
+  "name": "custome-cra-config",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "sunyxq"
+  },
+  "github": "https://github.com/sunyxq/custome-cra-config.git",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "scripts": {
+    "start": "dotenv -e .env react-app-rewired start",
+    "build:dev": "dotenv -e .env.dev react-app-rewired build",
+    "start:prd": "dotenv -e .env.prd.local react-app-rewired start",
+    "build": "dotenv -e .env.prd react-app-rewired build",
+    "analyze": "dotenv -e .env.analyze react-app-rewired build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "customize-cra": "^0.9.1",
+    "dotenv-cli": "^3.1.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "hard-source-webpack-plugin": "^0.13.1",
+    "react-app-rewired": "^2.1.6",
+    "speed-measure-webpack-plugin": "^1.3.3",
+    "webpack-bundle-analyzer": "^3.7.0",
+    "webpackbar": "^4.0.0"
+  }
+}
