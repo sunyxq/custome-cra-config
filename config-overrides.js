@@ -2,6 +2,7 @@ const {override,
   addWebpackAlias,
   addWebpackExternals,
   addWebpackPlugin,
+  addBabelPlugin,
   disableEsLint,
 } = require('customize-cra')
 const path = require('path')
@@ -13,12 +14,27 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const smp = new SpeedMeasurePlugin()
 
+const isProduct = process.env.NODE_ENV === 'production'
+
 const setAnalyze = () => config => {  
   if(process.env.REACT_APP_ANALYZE) {    
     config.plugins.push(new BundleAnalyzerPlugin())
   }
   return config
 }
+console.log(process.env.NODE_ENV);
+
+// 方法二
+const dropConsole = () => config => {
+  if(config.optimization.minimizer) {
+    config.optimization.minimize.forEach(minimizer => {
+      if(minimizer.constructor.name === 'TerserPlugin') {
+        minimizer.options.terserOptions.compress.drop_console = true
+      }
+    })
+  }
+}
+
 
 module.exports = smp.wrap(override(
   setAnalyze(),
@@ -30,7 +46,7 @@ module.exports = smp.wrap(override(
   }),
   addWebpackExternals({
     jquery: 'jQuery',
-    Vue: 'Vue'
+    // Vue: 'Vue'
   }),
   addWebpackPlugin(new webpack.ProvidePlugin({
     React: 'react',
@@ -38,5 +54,7 @@ module.exports = smp.wrap(override(
   })),
   addWebpackPlugin(new WebpackBar()),
   addWebpackPlugin(new FriendlyErrorsWebpackPlugin()),
-  addWebpackPlugin(new HardSourceWebpackPlugin())
+  addWebpackPlugin(new HardSourceWebpackPlugin()),
+  // 方法一
+  isProduct && addBabelPlugin(["transform-remove-console", {exclude: ["warn", "error"]}]),
 ))
